@@ -1,0 +1,380 @@
+{
+    "url": "https://replicate.com/lucataco/flux-dev-multi-lora",
+    "owner": "lucataco",
+    "name": "flux-dev-multi-lora",
+    "description": "FLUX.1-Dev Multi LoRA Explorer",
+    "visibility": "public",
+    "github_url": "https://github.com/lucataco/cog-flux-dev-multi-lora",
+    "paper_url": null,
+    "license_url": "https://huggingface.co/black-forest-labs/FLUX.1-dev/blob/main/LICENSE.md",
+    "run_count": 0,
+    "cover_image_url": "https://tjzk.replicate.delivery/models_models_cover_image/3d4f9bfe-ba25-4cb7-8835-8c1ef22446ec/hf-explorer.png",
+    "default_example": {
+        "id": "6jyz2qcyrsrm60cjc03rk4pk7m",
+        "model": "lucataco/flux-dev-multi-lora",
+        "version": "2389224e115448d9a77c07d7d45672b3f0aa45acacf1c5bcf51857ac295e3aec",
+        "status": "succeeded",
+        "input": {
+            "prompt": "pnt style Illustration of TOK with purple hair",
+            "hf_loras": [
+                "https://replicate.delivery/yhqm/9vSmRCa8Vv7bFtKfCfXTRzTq4X71tZW0LtLCb1l49bTSo8TTA/trained_model.tar",
+                "https://civitai.com/api/download/models/735262?type=Model&format=SafeTensor"
+            ],
+            "num_outputs": 1,
+            "aspect_ratio": "1:1",
+            "output_format": "webp",
+            "guidance_scale": 3.5,
+            "output_quality": 80,
+            "prompt_strength": 0.8,
+            "num_inference_steps": 28
+        },
+        "output": [
+            "https://replicate.delivery/yhqm/bwfxyfj2Phvg3kO4eBQZOqryT6m7aNzW2oQ2o2hnZCMQC4HnA/out-0.webp"
+        ],
+        "logs": "Using seed: 10430\nPrompt: pnt style Illustration of TOK with purple hair\ntxt2img mode\n  0%|          | 0/28 [00:00<?, ?it/s]\n  4%|▎         | 1/28 [00:00<00:10,  2.48it/s]\n  7%|▋         | 2/28 [00:00<00:09,  2.69it/s]\n 11%|█         | 3/28 [00:01<00:09,  2.59it/s]\n 14%|█▍        | 4/28 [00:01<00:09,  2.55it/s]\n 18%|█▊        | 5/28 [00:01<00:09,  2.53it/s]\n 21%|██▏       | 6/28 [00:02<00:08,  2.51it/s]\n 25%|██▌       | 7/28 [00:02<00:08,  2.50it/s]\n 29%|██▊       | 8/28 [00:03<00:08,  2.50it/s]\n 32%|███▏      | 9/28 [00:03<00:07,  2.50it/s]\n 36%|███▌      | 10/28 [00:03<00:07,  2.49it/s]\n 39%|███▉      | 11/28 [00:04<00:06,  2.49it/s]\n 43%|████▎     | 12/28 [00:04<00:06,  2.49it/s]\n 46%|████▋     | 13/28 [00:05<00:06,  2.49it/s]\n 50%|█████     | 14/28 [00:05<00:05,  2.49it/s]\n 54%|█████▎    | 15/28 [00:05<00:05,  2.49it/s]\n 57%|█████▋    | 16/28 [00:06<00:04,  2.49it/s]\n 61%|██████    | 17/28 [00:06<00:04,  2.49it/s]\n 64%|██████▍   | 18/28 [00:07<00:04,  2.49it/s]\n 68%|██████▊   | 19/28 [00:07<00:03,  2.49it/s]\n 71%|███████▏  | 20/28 [00:07<00:03,  2.49it/s]\n 75%|███████▌  | 21/28 [00:08<00:02,  2.49it/s]\n 79%|███████▊  | 22/28 [00:08<00:02,  2.49it/s]\n 82%|████████▏ | 23/28 [00:09<00:02,  2.49it/s]\n 86%|████████▌ | 24/28 [00:09<00:01,  2.49it/s]\n 89%|████████▉ | 25/28 [00:09<00:01,  2.49it/s]\n 93%|█████████▎| 26/28 [00:10<00:00,  2.49it/s]\n 96%|█████████▋| 27/28 [00:10<00:00,  2.49it/s]\n100%|██████████| 28/28 [00:11<00:00,  2.49it/s]\n100%|██████████| 28/28 [00:11<00:00,  2.50it/s]",
+        "error": null,
+        "metrics": {
+            "predict_time": 11.589144337,
+            "total_time": 11.597587
+        },
+        "created_at": "2024-10-06T04:12:45.126000Z",
+        "started_at": "2024-10-06T04:12:45.134443Z",
+        "completed_at": "2024-10-06T04:12:56.723587Z",
+        "urls": {
+            "get": "https://api.replicate.com/v1/predictions/6jyz2qcyrsrm60cjc03rk4pk7m",
+            "cancel": "https://api.replicate.com/v1/predictions/6jyz2qcyrsrm60cjc03rk4pk7m/cancel"
+        }
+    },
+    "latest_version": {
+        "id": "ad0314563856e714367fdc7244b19b160d25926d305fec270c9e00f64665d352",
+        "created_at": "2025-06-11T18:42:43.531147+00:00",
+        "cog_version": "0.14.10",
+        "openapi_schema": {
+            "info": {
+                "title": "Cog",
+                "version": "0.1.0"
+            },
+            "paths": {},
+            "openapi": "3.0.2",
+            "components": {
+                "schemas": {
+                    "Input": {
+                        "type": "object",
+                        "title": "Input",
+                        "required": [
+                            "prompt"
+                        ],
+                        "properties": {
+                            "seed": {
+                                "type": "integer",
+                                "title": "Seed",
+                                "x-order": 7,
+                                "description": "Random seed. Set for reproducible generation"
+                            },
+                            "image": {
+                                "type": "string",
+                                "title": "Image",
+                                "format": "uri",
+                                "x-order": 2,
+                                "description": "Input image for image to image mode. The aspect ratio of your output will match this image"
+                            },
+                            "prompt": {
+                                "type": "string",
+                                "title": "Prompt",
+                                "x-order": 0,
+                                "description": "Prompt for generated image"
+                            },
+                            "hf_loras": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                },
+                                "title": "Hf Loras",
+                                "x-order": 10,
+                                "description": "Huggingface path, or URL to the LoRA weights. Ex: alvdansen/frosting_lane_flux"
+                            },
+                            "lora_scales": {
+                                "type": "array",
+                                "items": {
+                                    "type": "number"
+                                },
+                                "title": "Lora Scales",
+                                "x-order": 11,
+                                "description": "Scale for the LoRA weights. Default value is 0.8"
+                            },
+                            "num_outputs": {
+                                "type": "integer",
+                                "title": "Num Outputs",
+                                "default": 1,
+                                "maximum": 4,
+                                "minimum": 1,
+                                "x-order": 4,
+                                "description": "Number of images to output."
+                            },
+                            "aspect_ratio": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/components/schemas/aspect_ratio"
+                                    }
+                                ],
+                                "default": "1:1",
+                                "x-order": 1,
+                                "description": "Aspect ratio for the generated image"
+                            },
+                            "output_format": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/components/schemas/output_format"
+                                    }
+                                ],
+                                "default": "webp",
+                                "x-order": 8,
+                                "description": "Format of the output images"
+                            },
+                            "guidance_scale": {
+                                "type": "number",
+                                "title": "Guidance Scale",
+                                "default": 3.5,
+                                "maximum": 10,
+                                "minimum": 0,
+                                "x-order": 6,
+                                "description": "Guidance scale for the diffusion process"
+                            },
+                            "output_quality": {
+                                "type": "integer",
+                                "title": "Output Quality",
+                                "default": 80,
+                                "maximum": 100,
+                                "minimum": 0,
+                                "x-order": 9,
+                                "description": "Quality when saving the output images, from 0 to 100. 100 is best quality, 0 is lowest quality. Not relevant for .png outputs"
+                            },
+                            "prompt_strength": {
+                                "type": "number",
+                                "title": "Prompt Strength",
+                                "default": 0.8,
+                                "maximum": 1,
+                                "minimum": 0,
+                                "x-order": 3,
+                                "description": "Prompt strength (or denoising strength) when using image to image. 1.0 corresponds to full destruction of information in image."
+                            },
+                            "num_inference_steps": {
+                                "type": "integer",
+                                "title": "Num Inference Steps",
+                                "default": 28,
+                                "maximum": 50,
+                                "minimum": 1,
+                                "x-order": 5,
+                                "description": "Number of inference steps"
+                            },
+                            "disable_safety_checker": {
+                                "type": "boolean",
+                                "title": "Disable Safety Checker",
+                                "default": false,
+                                "x-order": 12,
+                                "description": "Disable safety checker for generated images. This feature is only available through the API. See [https://replicate.com/docs/how-does-replicate-work#safety](https://replicate.com/docs/how-does-replicate-work#safety)"
+                            }
+                        }
+                    },
+                    "Output": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "format": "uri"
+                        },
+                        "title": "Output"
+                    },
+                    "Status": {
+                        "enum": [
+                            "starting",
+                            "processing",
+                            "succeeded",
+                            "canceled",
+                            "failed"
+                        ],
+                        "type": "string",
+                        "title": "Status",
+                        "description": "An enumeration."
+                    },
+                    "WebhookEvent": {
+                        "enum": [
+                            "start",
+                            "output",
+                            "logs",
+                            "completed"
+                        ],
+                        "type": "string",
+                        "title": "WebhookEvent",
+                        "description": "An enumeration."
+                    },
+                    "aspect_ratio": {
+                        "enum": [
+                            "1:1",
+                            "16:9",
+                            "21:9",
+                            "3:2",
+                            "2:3",
+                            "4:5",
+                            "5:4",
+                            "3:4",
+                            "4:3",
+                            "9:16",
+                            "9:21"
+                        ],
+                        "type": "string",
+                        "title": "aspect_ratio",
+                        "description": "An enumeration."
+                    },
+                    "output_format": {
+                        "enum": [
+                            "webp",
+                            "jpg",
+                            "png"
+                        ],
+                        "type": "string",
+                        "title": "output_format",
+                        "description": "An enumeration."
+                    },
+                    "ValidationError": {
+                        "type": "object",
+                        "title": "ValidationError",
+                        "required": [
+                            "loc",
+                            "msg",
+                            "type"
+                        ],
+                        "properties": {
+                            "loc": {
+                                "type": "array",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "string"
+                                        },
+                                        {
+                                            "type": "integer"
+                                        }
+                                    ]
+                                },
+                                "title": "Location"
+                            },
+                            "msg": {
+                                "type": "string",
+                                "title": "Message"
+                            },
+                            "type": {
+                                "type": "string",
+                                "title": "Error Type"
+                            }
+                        }
+                    },
+                    "PredictionRequest": {
+                        "type": "object",
+                        "title": "PredictionRequest",
+                        "properties": {
+                            "id": {
+                                "type": "string",
+                                "title": "Id"
+                            },
+                            "input": {
+                                "$ref": "#/components/schemas/Input"
+                            },
+                            "webhook": {
+                                "type": "string",
+                                "title": "Webhook",
+                                "format": "uri",
+                                "maxLength": 65536,
+                                "minLength": 1
+                            },
+                            "created_at": {
+                                "type": "string",
+                                "title": "Created At",
+                                "format": "date-time"
+                            },
+                            "output_file_prefix": {
+                                "type": "string",
+                                "title": "Output File Prefix"
+                            },
+                            "webhook_events_filter": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/WebhookEvent"
+                                },
+                                "default": [
+                                    "start",
+                                    "output",
+                                    "logs",
+                                    "completed"
+                                ]
+                            }
+                        }
+                    },
+                    "PredictionResponse": {
+                        "type": "object",
+                        "title": "PredictionResponse",
+                        "properties": {
+                            "id": {
+                                "type": "string",
+                                "title": "Id"
+                            },
+                            "logs": {
+                                "type": "string",
+                                "title": "Logs",
+                                "default": ""
+                            },
+                            "error": {
+                                "type": "string",
+                                "title": "Error"
+                            },
+                            "input": {
+                                "$ref": "#/components/schemas/Input"
+                            },
+                            "output": {
+                                "$ref": "#/components/schemas/Output"
+                            },
+                            "status": {
+                                "$ref": "#/components/schemas/Status"
+                            },
+                            "metrics": {
+                                "type": "object",
+                                "title": "Metrics"
+                            },
+                            "version": {
+                                "type": "string",
+                                "title": "Version"
+                            },
+                            "created_at": {
+                                "type": "string",
+                                "title": "Created At",
+                                "format": "date-time"
+                            },
+                            "started_at": {
+                                "type": "string",
+                                "title": "Started At",
+                                "format": "date-time"
+                            },
+                            "completed_at": {
+                                "type": "string",
+                                "title": "Completed At",
+                                "format": "date-time"
+                            }
+                        }
+                    },
+                    "HTTPValidationError": {
+                        "type": "object",
+                        "title": "HTTPValidationError",
+                        "properties": {
+                            "detail": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ValidationError"
+                                },
+                                "title": "Detail"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

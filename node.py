@@ -100,16 +100,25 @@ def create_comfyui_node(schema):
                         if kwargs[input_name] == "":
                             kwargs[input_name] = []
                         else:
-                            kwargs[input_name] = kwargs[input_name].split("\n")
+                            items = kwargs[input_name].split(",")
+                            for i, item in enumerate(items):
+                                try:
+                                    items[i] = float(item)
+                                except ValueError:
+                                    # Keep as string if can't convert to float
+                                    pass
+                            kwargs[input_name] = items
                     else:
                         kwargs[input_name] = [kwargs[input_name]]
 
         def log_input(self, kwargs):
             truncated_kwargs = {
-                k: v[:20] + "..."
-                if isinstance(v, str)
-                and (v.startswith("data:image") or v.startswith("data:audio"))
-                else v
+                k: (
+                    v[:20] + "..."
+                    if isinstance(v, str)
+                    and (v.startswith("data:image") or v.startswith("data:audio"))
+                    else v
+                )
                 for k, v in kwargs.items()
             }
             print(f"Running {replicate_model} with {truncated_kwargs}")
@@ -156,10 +165,9 @@ def create_comfyui_node(schema):
                 if audio_file:
                     audio_content = BytesIO(audio_file.read())
                     waveform, sample_rate = torchaudio.load(audio_content)
-                    audio_data.append({
-                        "waveform": waveform.unsqueeze(0),
-                        "sample_rate": sample_rate
-                    })
+                    audio_data.append(
+                        {"waveform": waveform.unsqueeze(0), "sample_rate": sample_rate}
+                    )
                 else:
                     print("Empty audio file received")
 
