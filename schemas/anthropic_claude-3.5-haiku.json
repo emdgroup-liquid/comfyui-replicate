@@ -1,0 +1,278 @@
+{
+    "url": "https://replicate.com/anthropic/claude-3.5-haiku",
+    "owner": "anthropic",
+    "name": "claude-3.5-haiku",
+    "description": "Anthropic's fastest, most cost-effective model, with a 200K token context window (claude-3-5-haiku-20241022)",
+    "visibility": "public",
+    "github_url": null,
+    "paper_url": null,
+    "license_url": "https://www.anthropic.com/legal/consumer-terms",
+    "run_count": 0,
+    "cover_image_url": "https://tjzk.replicate.delivery/models_models_cover_image/b591c51b-3a56-431c-848e-51a44e42d400/zqdpf1p55drm80cmynn94q2890_720.jpg",
+    "default_example": {
+        "id": "7zxaxcmtrsrma0cmzch853tvvr",
+        "model": "anthropic/claude-3.5-haiku",
+        "version": "hidden",
+        "status": "succeeded",
+        "input": {
+            "prompt": "Write a meta-haiku",
+            "max_tokens": 8192,
+            "system_prompt": ""
+        },
+        "output": [
+            "Here",
+            "'s",
+            " a meta-haiku",
+            " about ha",
+            "iku",
+            " itself",
+            ":\n\nSyll",
+            "ables dancing",
+            "\nFive",
+            ",",
+            " seven, five—",
+            "poetry",
+            "\nSpeaks",
+            " of",
+            " its",
+            " own",
+            " form"
+        ],
+        "logs": "Running prediction...",
+        "error": null,
+        "metrics": {
+            "input_token_count": 13,
+            "tokens_per_second": 29.47938993093198,
+            "output_token_count": 35,
+            "predict_time": 1.18871586,
+            "total_time": 1.201442,
+            "time_to_first_token": 0.014171699999999999
+        },
+        "created_at": "2025-02-12T17:08:56.646000Z",
+        "started_at": "2025-02-12T17:08:56.658726Z",
+        "completed_at": "2025-02-12T17:08:57.847442Z",
+        "urls": {
+            "stream": "https://stream-b.svc.ric1.c.replicate.net/v1/streams/frbjw4e5smzbku3xp7hb6u4miqhgywlcizgm7uolpaxdzpmwc3rq",
+            "get": "https://api.replicate.com/v1/predictions/7zxaxcmtrsrma0cmzch853tvvr",
+            "cancel": "https://api.replicate.com/v1/predictions/7zxaxcmtrsrma0cmzch853tvvr/cancel"
+        }
+    },
+    "latest_version": {
+        "id": "291420afd83024055bcabca323fdfeaacdd74a4e4fdce6dc29d3454deb729406",
+        "created_at": "2025-02-12T10:44:02.936818+00:00",
+        "cog_version": "0.14.0-alpha1",
+        "openapi_schema": {
+            "info": {
+                "title": "Cog",
+                "version": "0.1.0"
+            },
+            "paths": {},
+            "openapi": "3.0.2",
+            "components": {
+                "schemas": {
+                    "Input": {
+                        "type": "object",
+                        "title": "Input",
+                        "required": [
+                            "prompt"
+                        ],
+                        "properties": {
+                            "prompt": {
+                                "type": "string",
+                                "title": "Prompt",
+                                "x-order": 0,
+                                "description": "Input prompt"
+                            },
+                            "max_tokens": {
+                                "type": "integer",
+                                "title": "Max Tokens",
+                                "default": 8192,
+                                "maximum": 8192,
+                                "minimum": 1,
+                                "x-order": 2,
+                                "description": "Maximum number of output tokens"
+                            },
+                            "system_prompt": {
+                                "type": "string",
+                                "title": "System Prompt",
+                                "default": "",
+                                "x-order": 1,
+                                "description": "System prompt"
+                            }
+                        }
+                    },
+                    "Output": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "title": "Output",
+                        "x-cog-array-type": "iterator",
+                        "x-cog-array-display": "concatenate"
+                    },
+                    "Status": {
+                        "enum": [
+                            "starting",
+                            "processing",
+                            "succeeded",
+                            "canceled",
+                            "failed"
+                        ],
+                        "type": "string",
+                        "title": "Status",
+                        "description": "An enumeration."
+                    },
+                    "WebhookEvent": {
+                        "enum": [
+                            "start",
+                            "output",
+                            "logs",
+                            "completed"
+                        ],
+                        "type": "string",
+                        "title": "WebhookEvent",
+                        "description": "An enumeration."
+                    },
+                    "ValidationError": {
+                        "type": "object",
+                        "title": "ValidationError",
+                        "required": [
+                            "loc",
+                            "msg",
+                            "type"
+                        ],
+                        "properties": {
+                            "loc": {
+                                "type": "array",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "string"
+                                        },
+                                        {
+                                            "type": "integer"
+                                        }
+                                    ]
+                                },
+                                "title": "Location"
+                            },
+                            "msg": {
+                                "type": "string",
+                                "title": "Message"
+                            },
+                            "type": {
+                                "type": "string",
+                                "title": "Error Type"
+                            }
+                        }
+                    },
+                    "PredictionRequest": {
+                        "type": "object",
+                        "title": "PredictionRequest",
+                        "properties": {
+                            "id": {
+                                "type": "string",
+                                "title": "Id"
+                            },
+                            "input": {
+                                "$ref": "#/components/schemas/Input"
+                            },
+                            "webhook": {
+                                "type": "string",
+                                "title": "Webhook",
+                                "format": "uri",
+                                "maxLength": 65536,
+                                "minLength": 1
+                            },
+                            "created_at": {
+                                "type": "string",
+                                "title": "Created At",
+                                "format": "date-time"
+                            },
+                            "output_file_prefix": {
+                                "type": "string",
+                                "title": "Output File Prefix"
+                            },
+                            "webhook_events_filter": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/WebhookEvent"
+                                },
+                                "default": [
+                                    "start",
+                                    "output",
+                                    "logs",
+                                    "completed"
+                                ]
+                            }
+                        }
+                    },
+                    "PredictionResponse": {
+                        "type": "object",
+                        "title": "PredictionResponse",
+                        "properties": {
+                            "id": {
+                                "type": "string",
+                                "title": "Id"
+                            },
+                            "logs": {
+                                "type": "string",
+                                "title": "Logs",
+                                "default": ""
+                            },
+                            "error": {
+                                "type": "string",
+                                "title": "Error"
+                            },
+                            "input": {
+                                "$ref": "#/components/schemas/Input"
+                            },
+                            "output": {
+                                "$ref": "#/components/schemas/Output"
+                            },
+                            "status": {
+                                "$ref": "#/components/schemas/Status"
+                            },
+                            "metrics": {
+                                "type": "object",
+                                "title": "Metrics"
+                            },
+                            "version": {
+                                "type": "string",
+                                "title": "Version"
+                            },
+                            "created_at": {
+                                "type": "string",
+                                "title": "Created At",
+                                "format": "date-time"
+                            },
+                            "started_at": {
+                                "type": "string",
+                                "title": "Started At",
+                                "format": "date-time"
+                            },
+                            "completed_at": {
+                                "type": "string",
+                                "title": "Completed At",
+                                "format": "date-time"
+                            }
+                        }
+                    },
+                    "HTTPValidationError": {
+                        "type": "object",
+                        "title": "HTTPValidationError",
+                        "properties": {
+                            "detail": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ValidationError"
+                                },
+                                "title": "Detail"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

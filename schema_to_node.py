@@ -1,6 +1,7 @@
 DEFAULT_STEP = 0.01
 DEFAULT_ROUND = 0.001
 
+SVG_EXTENSIONS = ".svg"
 IMAGE_EXTENSIONS = (".png", ".jpg", ".jpeg", ".gif", ".webp")
 VIDEO_EXTENSIONS = (".mp4", ".mkv", ".webm", ".mov", ".mpg", ".mpeg")
 AUDIO_EXTENSIONS = (".mp3", ".wav", ".flac", ".mpga", ".m4a")
@@ -28,6 +29,9 @@ def convert_to_comfyui_input_type(
                 return "VIDEO"
             elif is_type(default_example_input[input_name], AUDIO_EXTENSIONS):
                 return "AUDIO"
+            elif is_type(default_example_input[input_name], SVG_EXTENSIONS):
+                return "SVG"
+
         elif any(x in input_name.lower() for x in ["image", "mask"]):
             return "IMAGE"
         elif "audio" in input_name.lower():
@@ -201,6 +205,8 @@ def get_return_type(schema):
                     return_types[prop_name] = "AUDIO"
                 elif is_type(prop_value, VIDEO_EXTENSIONS):
                     return_types[prop_name] = "VIDEO_URI"
+                elif is_type(prop_value, SVG_EXTENSIONS):
+                    return_types[prop_name] = "SVG"
                 else:
                     return_types[prop_name] = "STRING"
             elif prop_data.get("format") == "uri":
@@ -223,6 +229,8 @@ def get_return_type(schema):
         return "VIDEO_URI"
     elif is_type(default_example_output, AUDIO_EXTENSIONS):
         return "AUDIO"
+    elif is_type(default_example_output, SVG_EXTENSIONS):
+        return "SVG"
 
     if output_schema:
         if (

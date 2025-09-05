@@ -9,6 +9,7 @@ import base64
 import time
 import torchaudio
 import soundfile as sf
+import requests
 from replicate.client import Client
 from .schema_to_node import (
     schema_to_comfyui_input_types,
@@ -16,6 +17,20 @@ from .schema_to_node import (
     name_and_version,
     inputs_that_need_arrays,
 )
+
+# Import SVG class from ComfyUI if available, otherwise define our own
+try:
+    from comfy_extras.nodes_images import SVG
+except ImportError:
+    # Fallback implementation if ComfyUI's SVG class is not available
+    class SVG:
+        """
+        Stores SVG representations via a list of BytesIO objects.
+        """
+
+        def __init__(self, data: list[BytesIO]):
+            self.data = data
+
 
 replicate = Client(headers={"User-Agent": "comfyui-replicate/1.0.1"})
 
@@ -179,6 +194,48 @@ def create_comfyui_node(schema):
                 print("No valid audio files processed")
                 return None
 
+        def handle_svg_output(self, output):
+            """
+            Handle SVG output from the model, either from a direct SVG file or a URL.
+            Returns a list of BytesIO objects containing SVG data.
+            """
+            if output is None:
+                print("No SVG output received from the model")
+                return None
+
+            output_list = [output] if not isinstance(output, list) else output
+            svg_data = []
+
+            for item in output_list:
+                # If item is a URL, download the SVG content
+                if isinstance(item, str) and (
+                    item.startswith("http://") or item.startswith("https://")
+                ):
+                    try:
+                        response = requests.get(item, timeout=10)
+                        response.raise_for_status()
+                        svg_content = response.content
+                        svg_bytesio = BytesIO(svg_content)
+                        svg_data.append(svg_bytesio)
+                    except Exception as e:
+                        print(f"Failed to download SVG from URL {item}: {e}")
+                # If item is a file-like object (from replicate.run)
+                elif hasattr(item, "read"):
+                    try:
+                        svg_content = item.read()
+                        svg_bytesio = BytesIO(svg_content)
+                        svg_data.append(svg_bytesio)
+                    except Exception as e:
+                        print(f"Failed to read SVG data: {e}")
+                else:
+                    print(f"Unsupported SVG output format: {type(item)}")
+
+            if svg_data:
+                return SVG(svg_data)
+            else:
+                print("No valid SVG data processed")
+                return None
+
         def remove_falsey_optional_inputs(self, kwargs):
             optional_inputs = self.INPUT_TYPES().get("optional", {})
             for key in list(kwargs.keys()):
@@ -210,6 +267,10 @@ def create_comfyui_node(schema):
                         processed_outputs.append(
                             self.handle_audio_output(output.get(prop_name))
                         )
+                    elif prop_type == "SVG":
+                        processed_outputs.append(
+                            self.handle_svg_output(output.get(prop_name))
+                        )
                     elif prop_type == "STRING":
                         processed_outputs.append(
                             "".join(list(output.get(prop_name, ""))).strip()
@@ -219,6 +280,8 @@ def create_comfyui_node(schema):
                     processed_outputs.append(self.handle_image_output(output))
                 elif return_type == "AUDIO":
                     processed_outputs.append(self.handle_audio_output(output))
+                elif return_type == "SVG":
+                    processed_outputs.append(self.handle_svg_output(output))
                 else:
                     processed_outputs.append("".join(list(output)).strip())
 
