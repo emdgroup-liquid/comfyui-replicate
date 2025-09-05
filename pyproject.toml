@@ -10,5 +10,5 @@ Repository = "https://github.com/replicate/comfyui-replicate"
 
 [tool.comfy]
 PublisherId = "fofr"
-DisplayName = "ComfyUI-Replicate"
+DisplayName = "ComfyUI-Replicate-Liquid"
 Icon = ""
