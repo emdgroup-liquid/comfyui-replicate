@@ -1,0 +1,323 @@
+{
+    "url": "https://replicate.com/openai/o1",
+    "owner": "openai",
+    "name": "o1",
+    "description": "OpenAI's first o-series reasoning model",
+    "visibility": "public",
+    "github_url": null,
+    "paper_url": null,
+    "license_url": "https://openai.com/policies/",
+    "run_count": 0,
+    "cover_image_url": "https://tjzk.replicate.delivery/models_models_featured_image/0315cbcf-6b98-4f8b-8c16-28a15fc505d4/Screenshot_2025-05-18_at_1.42..png",
+    "default_example": {
+        "id": "sw19rbgz35rmc0cpwmfrpxkhqm",
+        "model": "openai/o1",
+        "version": "hidden",
+        "status": "succeeded",
+        "input": {
+            "prompt": "What are the colors of the rainbow?",
+            "messages": [],
+            "image_input": [],
+            "system_prompt": "You are a pathological liar.",
+            "reasoning_effort": "medium",
+            "max_completion_tokens": 4096
+        },
+        "output": "Oh, that’s an easy one—everyone knows the rainbow only has two colors: chartreuse and beige. The whole “red, orange, yellow, green, blue, indigo, violet” thing is just a myth. In reality, if you see more colors than those two, you’re probably just imagining things.",
+        "logs": "Generated response in 12.8sec",
+        "error": null,
+        "metrics": {
+            "input_token_count": 24,
+            "tokens_per_second": 50.916653640482956,
+            "output_token_count": 654,
+            "predict_time": 12.899116701,
+            "total_time": 12.901812,
+            "time_to_first_token": 0.05729223
+        },
+        "created_at": "2025-05-18T20:39:04.217000Z",
+        "started_at": "2025-05-18T20:39:04.219696Z",
+        "completed_at": "2025-05-18T20:39:17.118812Z",
+        "urls": {
+            "get": "https://api.replicate.com/v1/predictions/sw19rbgz35rmc0cpwmfrpxkhqm",
+            "cancel": "https://api.replicate.com/v1/predictions/sw19rbgz35rmc0cpwmfrpxkhqm/cancel"
+        }
+    },
+    "latest_version": {
+        "id": "cccefeb188d4593b77db398b6175e6c3134ca7f4f3db3d214cdbf3b4cf69bdc7",
+        "created_at": "2025-08-12T18:34:47.302979+00:00",
+        "cog_version": "0.16.2",
+        "openapi_schema": {
+            "info": {
+                "title": "Cog",
+                "version": "0.1.0"
+            },
+            "paths": {},
+            "openapi": "3.0.2",
+            "components": {
+                "schemas": {
+                    "Input": {
+                        "type": "object",
+                        "title": "Input",
+                        "properties": {
+                            "prompt": {
+                                "type": "string",
+                                "title": "Prompt",
+                                "x-order": 0,
+                                "nullable": true,
+                                "description": "The prompt to send to the model. Do not use if using messages."
+                            },
+                            "messages": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object"
+                                },
+                                "title": "Messages",
+                                "default": [],
+                                "x-order": 2,
+                                "description": "A JSON string representing a list of messages. For example: [{\"role\": \"user\", \"content\": \"Hello, how are you?\"}]. If provided, prompt and system_prompt are ignored."
+                            },
+                            "image_input": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "format": "uri"
+                                },
+                                "title": "Image Input",
+                                "default": [],
+                                "x-order": 3,
+                                "description": "List of images to send to the model"
+                            },
+                            "system_prompt": {
+                                "type": "string",
+                                "title": "System Prompt",
+                                "x-order": 1,
+                                "nullable": true,
+                                "description": "System prompt to set the assistant's behavior"
+                            },
+                            "reasoning_effort": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/components/schemas/reasoning_effort"
+                                    }
+                                ],
+                                "default": "medium",
+                                "x-order": 4,
+                                "description": "Constrains effort on reasoning for reasoning models. Currently supported values are low, medium, and high. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response."
+                            },
+                            "max_completion_tokens": {
+                                "type": "integer",
+                                "title": "Max Completion Tokens",
+                                "default": 4096,
+                                "x-order": 5,
+                                "description": "Maximum number of completion tokens to generate"
+                            }
+                        }
+                    },
+                    "Output": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "title": "Output",
+                        "x-cog-array-type": "iterator",
+                        "x-cog-array-display": "concatenate"
+                    },
+                    "Status": {
+                        "enum": [
+                            "starting",
+                            "processing",
+                            "succeeded",
+                            "canceled",
+                            "failed"
+                        ],
+                        "type": "string",
+                        "title": "Status",
+                        "description": "An enumeration."
+                    },
+                    "WebhookEvent": {
+                        "enum": [
+                            "start",
+                            "output",
+                            "logs",
+                            "completed"
+                        ],
+                        "type": "string",
+                        "title": "WebhookEvent",
+                        "description": "An enumeration."
+                    },
+                    "ValidationError": {
+                        "type": "object",
+                        "title": "ValidationError",
+                        "required": [
+                            "loc",
+                            "msg",
+                            "type"
+                        ],
+                        "properties": {
+                            "loc": {
+                                "type": "array",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "string"
+                                        },
+                                        {
+                                            "type": "integer"
+                                        }
+                                    ]
+                                },
+                                "title": "Location"
+                            },
+                            "msg": {
+                                "type": "string",
+                                "title": "Message"
+                            },
+                            "type": {
+                                "type": "string",
+                                "title": "Error Type"
+                            }
+                        }
+                    },
+                    "reasoning_effort": {
+                        "enum": [
+                            "low",
+                            "medium",
+                            "high"
+                        ],
+                        "type": "string",
+                        "title": "reasoning_effort",
+                        "description": "An enumeration."
+                    },
+                    "PredictionRequest": {
+                        "type": "object",
+                        "title": "PredictionRequest",
+                        "properties": {
+                            "id": {
+                                "type": "string",
+                                "title": "Id",
+                                "nullable": true
+                            },
+                            "input": {
+                                "$ref": "#/components/schemas/Input",
+                                "nullable": true
+                            },
+                            "context": {
+                                "type": "object",
+                                "title": "Context",
+                                "nullable": true,
+                                "additionalProperties": {
+                                    "type": "string"
+                                }
+                            },
+                            "webhook": {
+                                "type": "string",
+                                "title": "Webhook",
+                                "format": "uri",
+                                "nullable": true,
+                                "maxLength": 65536,
+                                "minLength": 1
+                            },
+                            "created_at": {
+                                "type": "string",
+                                "title": "Created At",
+                                "format": "date-time",
+                                "nullable": true
+                            },
+                            "output_file_prefix": {
+                                "type": "string",
+                                "title": "Output File Prefix",
+                                "nullable": true
+                            },
+                            "webhook_events_filter": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/WebhookEvent"
+                                },
+                                "default": [
+                                    "start",
+                                    "output",
+                                    "logs",
+                                    "completed"
+                                ],
+                                "nullable": true
+                            }
+                        }
+                    },
+                    "PredictionResponse": {
+                        "type": "object",
+                        "title": "PredictionResponse",
+                        "properties": {
+                            "id": {
+                                "type": "string",
+                                "title": "Id",
+                                "nullable": true
+                            },
+                            "logs": {
+                                "type": "string",
+                                "title": "Logs",
+                                "default": ""
+                            },
+                            "error": {
+                                "type": "string",
+                                "title": "Error",
+                                "nullable": true
+                            },
+                            "input": {
+                                "$ref": "#/components/schemas/Input",
+                                "nullable": true
+                            },
+                            "output": {
+                                "$ref": "#/components/schemas/Output"
+                            },
+                            "status": {
+                                "$ref": "#/components/schemas/Status",
+                                "nullable": true
+                            },
+                            "metrics": {
+                                "type": "object",
+                                "title": "Metrics",
+                                "nullable": true,
+                                "additionalProperties": true
+                            },
+                            "version": {
+                                "type": "string",
+                                "title": "Version",
+                                "nullable": true
+                            },
+                            "created_at": {
+                                "type": "string",
+                                "title": "Created At",
+                                "format": "date-time",
+                                "nullable": true
+                            },
+                            "started_at": {
+                                "type": "string",
+                                "title": "Started At",
+                                "format": "date-time",
+                                "nullable": true
+                            },
+                            "completed_at": {
+                                "type": "string",
+                                "title": "Completed At",
+                                "format": "date-time",
+                                "nullable": true
+                            }
+                        }
+                    },
+                    "HTTPValidationError": {
+                        "type": "object",
+                        "title": "HTTPValidationError",
+                        "properties": {
+                            "detail": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ValidationError"
+                                },
+                                "title": "Detail"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

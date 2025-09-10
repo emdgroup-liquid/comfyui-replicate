@@ -1,0 +1,283 @@
+{
+    "url": "https://replicate.com/openai/o1-mini",
+    "owner": "openai",
+    "name": "o1-mini",
+    "description": "A small model alternative to o1",
+    "visibility": "public",
+    "github_url": null,
+    "paper_url": null,
+    "license_url": "https://openai.com/policies/",
+    "run_count": 0,
+    "cover_image_url": "https://tjzk.replicate.delivery/models_models_featured_image/05176bef-ce51-4955-84a5-d5d419992ec9/Screenshot_2025-05-18_at_10.19.png",
+    "default_example": {
+        "id": "nqkehh5akxrma0cpww08ap15pr",
+        "model": "openai/o1-mini",
+        "version": "hidden",
+        "status": "succeeded",
+        "input": {
+            "prompt": "A train leaves City A for City B at 60 miles per hour. Another train leaves City B for City A at 90 miles per hour on the same track. The cities are 300 miles apart. If both trains leave at the same time, how far from City A will they meet? Be succint, show your steps, but don't use LaTeX in your answer.",
+            "max_completion_tokens": 4096
+        },
+        "output": "They meet after the following steps:\n\n1. Let t be the time in hours when they meet.\n2. Distance covered by Train A: 60 mph × t = 60t miles.\n3. Distance covered by Train B: 90 mph × t = 90t miles.\n4. Total distance: 60t + 90t = 150t = 300 miles.\n5. Solve for t: t = 300 / 150 = 2 hours.\n6. Distance from City A: 60 × 2 = 120 miles.\n\n**Answer:** They meet 120 miles from City A.",
+        "logs": "Generated response in 2.9sec",
+        "error": null,
+        "metrics": {
+            "input_token_count": 85,
+            "tokens_per_second": 94.34867853737158,
+            "output_token_count": 272,
+            "predict_time": 2.882949805,
+            "total_time": 2.891247,
+            "time_to_first_token": 0.008323544
+        },
+        "created_at": "2025-05-19T05:25:02.751000Z",
+        "started_at": "2025-05-19T05:25:02.759297Z",
+        "completed_at": "2025-05-19T05:25:05.642247Z",
+        "urls": {
+            "get": "https://api.replicate.com/v1/predictions/nqkehh5akxrma0cpww08ap15pr",
+            "cancel": "https://api.replicate.com/v1/predictions/nqkehh5akxrma0cpww08ap15pr/cancel"
+        }
+    },
+    "latest_version": {
+        "id": "afb63ac5dc420133173c4e864bb7c124404281d4dedc6b23776c80dd508213e3",
+        "created_at": "2025-08-12T18:54:07.401092+00:00",
+        "cog_version": "0.16.2",
+        "openapi_schema": {
+            "info": {
+                "title": "Cog",
+                "version": "0.1.0"
+            },
+            "paths": {},
+            "openapi": "3.0.2",
+            "components": {
+                "schemas": {
+                    "Input": {
+                        "type": "object",
+                        "title": "Input",
+                        "properties": {
+                            "prompt": {
+                                "type": "string",
+                                "title": "Prompt",
+                                "x-order": 0,
+                                "nullable": true,
+                                "description": "The prompt to send to the model. Do not use if using messages."
+                            },
+                            "messages": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object"
+                                },
+                                "title": "Messages",
+                                "default": [],
+                                "x-order": 1,
+                                "description": "A JSON string representing a list of messages. For example: [{\"role\": \"user\", \"content\": \"Hello, how are you?\"}]. If provided, prompt and system_prompt are ignored."
+                            },
+                            "max_completion_tokens": {
+                                "type": "integer",
+                                "title": "Max Completion Tokens",
+                                "default": 4096,
+                                "maximum": 65536,
+                                "minimum": 1,
+                                "x-order": 2,
+                                "description": "Maximum number of completion tokens to generate"
+                            }
+                        }
+                    },
+                    "Output": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "title": "Output",
+                        "x-cog-array-type": "iterator",
+                        "x-cog-array-display": "concatenate"
+                    },
+                    "Status": {
+                        "enum": [
+                            "starting",
+                            "processing",
+                            "succeeded",
+                            "canceled",
+                            "failed"
+                        ],
+                        "type": "string",
+                        "title": "Status",
+                        "description": "An enumeration."
+                    },
+                    "WebhookEvent": {
+                        "enum": [
+                            "start",
+                            "output",
+                            "logs",
+                            "completed"
+                        ],
+                        "type": "string",
+                        "title": "WebhookEvent",
+                        "description": "An enumeration."
+                    },
+                    "ValidationError": {
+                        "type": "object",
+                        "title": "ValidationError",
+                        "required": [
+                            "loc",
+                            "msg",
+                            "type"
+                        ],
+                        "properties": {
+                            "loc": {
+                                "type": "array",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "string"
+                                        },
+                                        {
+                                            "type": "integer"
+                                        }
+                                    ]
+                                },
+                                "title": "Location"
+                            },
+                            "msg": {
+                                "type": "string",
+                                "title": "Message"
+                            },
+                            "type": {
+                                "type": "string",
+                                "title": "Error Type"
+                            }
+                        }
+                    },
+                    "PredictionRequest": {
+                        "type": "object",
+                        "title": "PredictionRequest",
+                        "properties": {
+                            "id": {
+                                "type": "string",
+                                "title": "Id",
+                                "nullable": true
+                            },
+                            "input": {
+                                "$ref": "#/components/schemas/Input",
+                                "nullable": true
+                            },
+                            "context": {
+                                "type": "object",
+                                "title": "Context",
+                                "nullable": true,
+                                "additionalProperties": {
+                                    "type": "string"
+                                }
+                            },
+                            "webhook": {
+                                "type": "string",
+                                "title": "Webhook",
+                                "format": "uri",
+                                "nullable": true,
+                                "maxLength": 65536,
+                                "minLength": 1
+                            },
+                            "created_at": {
+                                "type": "string",
+                                "title": "Created At",
+                                "format": "date-time",
+                                "nullable": true
+                            },
+                            "output_file_prefix": {
+                                "type": "string",
+                                "title": "Output File Prefix",
+                                "nullable": true
+                            },
+                            "webhook_events_filter": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/WebhookEvent"
+                                },
+                                "default": [
+                                    "start",
+                                    "output",
+                                    "logs",
+                                    "completed"
+                                ],
+                                "nullable": true
+                            }
+                        }
+                    },
+                    "PredictionResponse": {
+                        "type": "object",
+                        "title": "PredictionResponse",
+                        "properties": {
+                            "id": {
+                                "type": "string",
+                                "title": "Id",
+                                "nullable": true
+                            },
+                            "logs": {
+                                "type": "string",
+                                "title": "Logs",
+                                "default": ""
+                            },
+                            "error": {
+                                "type": "string",
+                                "title": "Error",
+                                "nullable": true
+                            },
+                            "input": {
+                                "$ref": "#/components/schemas/Input",
+                                "nullable": true
+                            },
+                            "output": {
+                                "$ref": "#/components/schemas/Output"
+                            },
+                            "status": {
+                                "$ref": "#/components/schemas/Status",
+                                "nullable": true
+                            },
+                            "metrics": {
+                                "type": "object",
+                                "title": "Metrics",
+                                "nullable": true,
+                                "additionalProperties": true
+                            },
+                            "version": {
+                                "type": "string",
+                                "title": "Version",
+                                "nullable": true
+                            },
+                            "created_at": {
+                                "type": "string",
+                                "title": "Created At",
+                                "format": "date-time",
+                                "nullable": true
+                            },
+                            "started_at": {
+                                "type": "string",
+                                "title": "Started At",
+                                "format": "date-time",
+                                "nullable": true
+                            },
+                            "completed_at": {
+                                "type": "string",
+                                "title": "Completed At",
+                                "format": "date-time",
+                                "nullable": true
+                            }
+                        }
+                    },
+                    "HTTPValidationError": {
+                        "type": "object",
+                        "title": "HTTPValidationError",
+                        "properties": {
+                            "detail": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ValidationError"
+                                },
+                                "title": "Detail"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

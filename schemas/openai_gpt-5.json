@@ -1,0 +1,405 @@
+{
+    "url": "https://replicate.com/openai/gpt-5",
+    "owner": "openai",
+    "name": "gpt-5",
+    "description": "OpenAI's new model excelling at coding, writing, and reasoning.",
+    "visibility": "public",
+    "github_url": null,
+    "paper_url": null,
+    "license_url": null,
+    "run_count": 0,
+    "cover_image_url": "https://tjzk.replicate.delivery/models_models_featured_image/df3c6e87-cc46-40d9-a48f-381f80c7b10f/Screenshot_2025-08-07_at_1.04..png",
+    "default_example": {
+        "id": "gcm040g0s5rm80crktgrjvz3b0",
+        "model": "openai/gpt-5",
+        "version": "hidden",
+        "status": "succeeded",
+        "input": {
+            "prompt": "Are you AGI?",
+            "messages": [],
+            "verbosity": "medium",
+            "image_input": [],
+            "reasoning_effort": "minimal"
+        },
+        "output": [
+            "",
+            "No",
+            ".",
+            " I",
+            "’m",
+            " a",
+            " narrow",
+            " AI",
+            " language",
+            " model",
+            ".",
+            " I",
+            " can",
+            " generate",
+            " and",
+            " reason",
+            " about",
+            " text",
+            " across",
+            " many",
+            " topics",
+            ",",
+            " but",
+            " I",
+            " don",
+            "’t",
+            " have",
+            " general",
+            " human",
+            "-level",
+            " intelligence",
+            ",",
+            " self",
+            "-awareness",
+            ",",
+            " or",
+            " open",
+            "-ended",
+            " autonomy",
+            ".",
+            " My",
+            " abilities",
+            " are",
+            " bounded",
+            " by",
+            " my",
+            " training",
+            " data",
+            ",",
+            " design",
+            ",",
+            " and",
+            " the",
+            " information",
+            " you",
+            " provide",
+            " in",
+            " a",
+            " conversation",
+            "."
+        ],
+        "logs": "Input token count: 11\nOutput token count: 68\nTotal token count: 79\nTTFT: 0.81s\nFinish reason: stop",
+        "error": null,
+        "metrics": {
+            "input_token_count": 11,
+            "tokens_per_second": 55.28796501196099,
+            "output_token_count": 68,
+            "predict_time": 1.270037555,
+            "total_time": 1.271789,
+            "time_to_first_token": 0.041864466
+        },
+        "created_at": "2025-08-12T14:13:28.393000Z",
+        "started_at": "2025-08-12T14:13:28.394751Z",
+        "completed_at": "2025-08-12T14:13:29.664789Z",
+        "urls": {
+            "stream": "https://stream-b.svc.ric1.c.replicate.net/v1/streams/oov7goccsgagm273qhlx4p35jpcmzn4ghdi7ukiekprg4a2t4dfa",
+            "get": "https://api.replicate.com/v1/predictions/gcm040g0s5rm80crktgrjvz3b0",
+            "cancel": "https://api.replicate.com/v1/predictions/gcm040g0s5rm80crktgrjvz3b0/cancel"
+        }
+    },
+    "latest_version": {
+        "id": "5240a675e1b5b4069abb6aa888936e6807969beefd006e9014073fe21cc49eec",
+        "created_at": "2025-08-12T12:04:41.665322+00:00",
+        "cog_version": "0.16.2",
+        "openapi_schema": {
+            "info": {
+                "title": "Cog",
+                "version": "0.1.0"
+            },
+            "paths": {},
+            "openapi": "3.0.2",
+            "components": {
+                "schemas": {
+                    "Input": {
+                        "type": "object",
+                        "title": "Input",
+                        "properties": {
+                            "prompt": {
+                                "type": "string",
+                                "title": "Prompt",
+                                "x-order": 0,
+                                "nullable": true,
+                                "description": "The prompt to send to the model. Do not use if using messages."
+                            },
+                            "messages": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object"
+                                },
+                                "title": "Messages",
+                                "default": [],
+                                "x-order": 2,
+                                "description": "A JSON string representing a list of messages. For example: [{\"role\": \"user\", \"content\": \"Hello, how are you?\"}]. If provided, prompt and system_prompt are ignored."
+                            },
+                            "verbosity": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/components/schemas/verbosity"
+                                    }
+                                ],
+                                "default": "medium",
+                                "x-order": 5,
+                                "description": "Constrains the verbosity of the model's response. Lower values will result in more concise responses, while higher values will result in more verbose responses. Currently supported values are low, medium, and high. GPT-5 supports this parameter to help control whether answers are short and to the point or long and comprehensive."
+                            },
+                            "image_input": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "format": "uri"
+                                },
+                                "title": "Image Input",
+                                "default": [],
+                                "x-order": 3,
+                                "description": "List of images to send to the model"
+                            },
+                            "system_prompt": {
+                                "type": "string",
+                                "title": "System Prompt",
+                                "x-order": 1,
+                                "nullable": true,
+                                "description": "System prompt to set the assistant's behavior"
+                            },
+                            "reasoning_effort": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/components/schemas/reasoning_effort"
+                                    }
+                                ],
+                                "default": "minimal",
+                                "x-order": 4,
+                                "description": "Constrains effort on reasoning for GPT-5 models. Currently supported values are minimal, low, medium, and high. The minimal value gets answers back faster without extensive reasoning first. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. For higher reasoning efforts you may need to increase your max_completion_tokens to avoid empty responses (where all the tokens are used on reasoning)."
+                            },
+                            "max_completion_tokens": {
+                                "type": "integer",
+                                "title": "Max Completion Tokens",
+                                "x-order": 6,
+                                "nullable": true,
+                                "description": "Maximum number of completion tokens to generate. For higher reasoning efforts you may need to increase your max_completion_tokens to avoid empty responses (where all the tokens are used on reasoning)."
+                            }
+                        }
+                    },
+                    "Output": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "title": "Output",
+                        "x-cog-array-type": "iterator",
+                        "x-cog-array-display": "concatenate"
+                    },
+                    "Status": {
+                        "enum": [
+                            "starting",
+                            "processing",
+                            "succeeded",
+                            "canceled",
+                            "failed"
+                        ],
+                        "type": "string",
+                        "title": "Status",
+                        "description": "An enumeration."
+                    },
+                    "verbosity": {
+                        "enum": [
+                            "low",
+                            "medium",
+                            "high"
+                        ],
+                        "type": "string",
+                        "title": "verbosity",
+                        "description": "An enumeration."
+                    },
+                    "WebhookEvent": {
+                        "enum": [
+                            "start",
+                            "output",
+                            "logs",
+                            "completed"
+                        ],
+                        "type": "string",
+                        "title": "WebhookEvent",
+                        "description": "An enumeration."
+                    },
+                    "ValidationError": {
+                        "type": "object",
+                        "title": "ValidationError",
+                        "required": [
+                            "loc",
+                            "msg",
+                            "type"
+                        ],
+                        "properties": {
+                            "loc": {
+                                "type": "array",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "string"
+                                        },
+                                        {
+                                            "type": "integer"
+                                        }
+                                    ]
+                                },
+                                "title": "Location"
+                            },
+                            "msg": {
+                                "type": "string",
+                                "title": "Message"
+                            },
+                            "type": {
+                                "type": "string",
+                                "title": "Error Type"
+                            }
+                        }
+                    },
+                    "reasoning_effort": {
+                        "enum": [
+                            "minimal",
+                            "low",
+                            "medium",
+                            "high"
+                        ],
+                        "type": "string",
+                        "title": "reasoning_effort",
+                        "description": "An enumeration."
+                    },
+                    "PredictionRequest": {
+                        "type": "object",
+                        "title": "PredictionRequest",
+                        "properties": {
+                            "id": {
+                                "type": "string",
+                                "title": "Id",
+                                "nullable": true
+                            },
+                            "input": {
+                                "$ref": "#/components/schemas/Input",
+                                "nullable": true
+                            },
+                            "context": {
+                                "type": "object",
+                                "title": "Context",
+                                "nullable": true,
+                                "additionalProperties": {
+                                    "type": "string"
+                                }
+                            },
+                            "webhook": {
+                                "type": "string",
+                                "title": "Webhook",
+                                "format": "uri",
+                                "nullable": true,
+                                "maxLength": 65536,
+                                "minLength": 1
+                            },
+                            "created_at": {
+                                "type": "string",
+                                "title": "Created At",
+                                "format": "date-time",
+                                "nullable": true
+                            },
+                            "output_file_prefix": {
+                                "type": "string",
+                                "title": "Output File Prefix",
+                                "nullable": true
+                            },
+                            "webhook_events_filter": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/WebhookEvent"
+                                },
+                                "default": [
+                                    "start",
+                                    "output",
+                                    "logs",
+                                    "completed"
+                                ],
+                                "nullable": true
+                            }
+                        }
+                    },
+                    "PredictionResponse": {
+                        "type": "object",
+                        "title": "PredictionResponse",
+                        "properties": {
+                            "id": {
+                                "type": "string",
+                                "title": "Id",
+                                "nullable": true
+                            },
+                            "logs": {
+                                "type": "string",
+                                "title": "Logs",
+                                "default": ""
+                            },
+                            "error": {
+                                "type": "string",
+                                "title": "Error",
+                                "nullable": true
+                            },
+                            "input": {
+                                "$ref": "#/components/schemas/Input",
+                                "nullable": true
+                            },
+                            "output": {
+                                "$ref": "#/components/schemas/Output"
+                            },
+                            "status": {
+                                "$ref": "#/components/schemas/Status",
+                                "nullable": true
+                            },
+                            "metrics": {
+                                "type": "object",
+                                "title": "Metrics",
+                                "nullable": true,
+                                "additionalProperties": true
+                            },
+                            "version": {
+                                "type": "string",
+                                "title": "Version",
+                                "nullable": true
+                            },
+                            "created_at": {
+                                "type": "string",
+                                "title": "Created At",
+                                "format": "date-time",
+                                "nullable": true
+                            },
+                            "started_at": {
+                                "type": "string",
+                                "title": "Started At",
+                                "format": "date-time",
+                                "nullable": true
+                            },
+                            "completed_at": {
+                                "type": "string",
+                                "title": "Completed At",
+                                "format": "date-time",
+                                "nullable": true
+                            }
+                        }
+                    },
+                    "HTTPValidationError": {
+                        "type": "object",
+                        "title": "HTTPValidationError",
+                        "properties": {
+                            "detail": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ValidationError"
+                                },
+                                "title": "Detail"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
