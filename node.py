@@ -123,8 +123,10 @@ def create_comfyui_node(schema):
                                     # Keep as string if can't convert to float
                                     pass
                             kwargs[input_name] = items
-                    else:
+                    elif not isinstance(kwargs[input_name], list):
+                        # If it's not a string and not already a list, wrap it in a list
                         kwargs[input_name] = [kwargs[input_name]]
+                    # If it's already a list, leave it as is
 
         def log_input(self, kwargs):
             truncated_kwargs = {

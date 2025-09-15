@@ -11,6 +11,7 @@ TYPE_MAPPING = {
     "integer": "INT",
     "number": "FLOAT",
     "boolean": "BOOLEAN",
+    "array": "LIST",
 }
 
 
